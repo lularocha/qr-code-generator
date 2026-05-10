@@ -432,7 +432,6 @@ input[type="color"]::-webkit-color-swatch {
   justify-content: center;
   min-height: 420px;
   padding: 1.25rem;
-  border: 1px dashed var(--border);
   border-radius: var(--radius);
   background: var(--panel);
 }
