@@ -206,7 +206,8 @@ if (backToTopButton) {
   const toggleBackToTop = () => {
     const scrollableHeight =
       document.documentElement.scrollHeight - window.innerHeight;
-    const threshold = Math.min(scrollableHeight * 0.25, 160);
+    const threshold =
+      window.innerWidth <= 960 ? scrollableHeight * 0.5 : scrollableHeight * 0.25;
     const shouldShow = scrollableHeight > 0 && window.scrollY >= threshold;
 
     backToTopButton.classList.toggle("is-visible", shouldShow);
