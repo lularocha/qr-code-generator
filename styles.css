@@ -30,6 +30,47 @@ body {
   border-top: 0.75rem solid #fe0;
 }
 
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition:
+    background-color 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+  z-index: 40;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: #000;
+}
+
+.back-to-top svg {
+  width: 22px;
+  height: 22px;
+}
+
 button,
 input,
 select {
@@ -85,27 +126,41 @@ a {
 .locale-switcher {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
 }
 
 .locale-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
   border: 0;
+  border-radius: 50%;
   padding: 0;
-  background: transparent;
-  color: var(--muted);
+  background: #fff;
+  color: #000;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 700;
   line-height: 1;
   cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 .locale-link.active {
-  color: var(--text);
-  font-weight: 700;
+  background: #000;
+  color: #fff;
 }
 
 .locale-link:hover {
-  color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.locale-link.active:hover {
+  background: #000;
+  color: #fff;
 }
 
 .hero {
@@ -149,10 +204,10 @@ h3 {
 }
 
 .lead {
-  margin: 1rem 0 0;
+  margin: 1.5rem 0 0;
   color: var(--text);
   font-size: 1.25rem;
-  line-height: 1.6;
+  line-height: 1.25;
 }
 
 .card {
@@ -310,12 +365,10 @@ input[type="color"]::-webkit-color-swatch {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  width: min(250px, 100%);
   border: 0;
   border-radius: 999px;
-  padding: 0.85rem 1.4rem;
-  font-size: 0.98rem;
+  padding: 10px 30px;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition:
@@ -456,10 +509,14 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 @media (max-width: 960px) {
+  .site-title {
+    font-size: 1.5rem;
+  }
+
   .locale-switcher {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
     position: absolute;
     top: 30px;
     right: 20px;
@@ -492,7 +549,4 @@ input[type="color"]::-webkit-color-swatch {
     padding: 1.15rem;
   }
 
-  .button {
-    font-size: 1.25rem;
-  }
 }

@@ -108,8 +108,8 @@
 
     <section class="info-grid">
       <article class="card accent-card">
-        <div class="accent">Tip</div>
-        <h3 data-i18n="tipTitle">Test before sharing</h3>
+        <div class="accent" data-i18n="tipLabel">IMPORTANT</div>
+        <h3 data-i18n="tipTitle">Test before sharing!</h3>
         <p data-i18n="tipBody">It is always a good idea to test the QR code before sending it to someone, printing it, or using it anywhere else. Scan it with your smartphone camera and open it in the browser or relevant app to confirm the text or URL is correct.</p>
       </article>
 
@@ -134,6 +134,20 @@
     </footer>
   </main>
 
+  <button class="back-to-top" type="button" aria-label="Back to top">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="m5 12 7-7 7 7"></path>
+      <path d="M12 19V5"></path>
+    </svg>
+  </button>
   <script src="./qrcode.min.js"></script>
   <script src="./script.js"></script>
 </body>

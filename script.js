@@ -21,7 +21,8 @@ const translations = {
     generate: "Generate QR Code",
     previewTitle: "Preview and download",
     download: "Download QR Code",
-    tipTitle: "Test before sharing",
+    tipTitle: "Test before sharing!",
+    tipLabel: "IMPORTANT",
     tipBody: "It is always a good idea to test the QR code before sending it to someone, printing it, or using it anywhere else. Scan it with your smartphone camera and open it in the browser or relevant app to confirm the text or URL is correct.",
     featuresTitle: "Features",
     feature1: "Never expires",
@@ -56,7 +57,8 @@ const translations = {
     generate: "Gerar QR Code",
     previewTitle: "Visualize e baixe",
     download: "Baixar QR Code",
-    tipTitle: "Teste antes de compartilhar",
+    tipTitle: "Teste antes de compartilhar!",
+    tipLabel: "IMPORTANTE",
     tipBody: "É sempre bom testar o QR code antes de enviar para alguém, imprimir ou usar em qualquer outro lugar. Para isso basta escanear com a câmera do smartphone e abrir no navegador ou app correspondente para confirmar se o texto ou endereço (URL) que você digitou está correto.",
     featuresTitle: "Características",
     feature1: "Nunca expira",
@@ -80,6 +82,7 @@ const qrCodeElement = document.querySelector("#qrcode");
 const downloadButton = document.querySelector("#download-btn");
 const localeButtons = document.querySelectorAll("[data-lang]");
 const colorLabel = document.querySelector("#color-label");
+const backToTopButton = document.querySelector(".back-to-top");
 
 let currentLocale = getInitialLocale();
 
@@ -198,6 +201,24 @@ document.addEventListener("click", (event) => {
     }
   });
 });
+
+if (backToTopButton) {
+  const toggleBackToTop = () => {
+    const scrollableHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
+    const threshold = Math.min(scrollableHeight * 0.25, 160);
+    const shouldShow = scrollableHeight > 0 && window.scrollY >= threshold;
+
+    backToTopButton.classList.toggle("is-visible", shouldShow);
+  };
+
+  backToTopButton.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  window.addEventListener("scroll", toggleBackToTop, { passive: true });
+  toggleBackToTop();
+}
 
 applyTranslations(currentLocale);
 generateQR();
