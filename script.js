@@ -1,6 +1,6 @@
 const translations = {
   en: {
-    brandKicker: "sugirodesign",
+    brandKicker: "sugiro.ai",
     lead: "Create QR codes instantly: no signup, no expiration, 100% free.",
     formTitle: "Build your QR code",
     textLabel: "Enter URL or text",
@@ -15,7 +15,8 @@ const translations = {
     errorMedium: "Medium",
     errorHigh: "High",
     errorVeryHigh: "Very High",
-    errorInfo: "A higher error correction level makes the QR code more reliable if it gets dirty, damaged, or partially covered, but it also makes the code more complex with more modules.",
+    errorInfo:
+      "A higher error correction level makes the QR code more reliable if it gets dirty, damaged, or partially covered, but it also makes the code more complex with more modules.",
     colorLabelDesktop: "QR code color (click the bar below)",
     colorLabelMobile: "QR code color (tap the bar below)",
     generate: "Generate QR Code",
@@ -23,20 +24,22 @@ const translations = {
     download: "Download QR Code",
     tipTitle: "Test before sharing!",
     tipLabel: "IMPORTANT",
-    tipBody: "It is always a good idea to test the QR code before sending it to someone, printing it, or using it anywhere else. Scan it with your smartphone camera and open it in the browser or relevant app to confirm the text or URL is correct.",
+    tipBody:
+      "It is always a good idea to test the QR code before sending it to someone, printing it, or using it anywhere else. Scan it with your smartphone camera and open it in the browser or relevant app to confirm the text or URL is correct.",
     featuresTitle: "Features",
     feature1: "Never expires",
     feature2: "No account required",
     feature3: "Customize size and color",
     feature4: "Adjust error correction",
     feature5: "No watermark",
-    footerBody: "Works entirely in your browser. Your data never leaves your device.",
+    footerBody:
+      "Works entirely in your browser. Your data never leaves your device.",
     footerCreditPrefix: "by lula rocha",
     emptyAlert: "Please enter a URL or text",
-    pageTitle: "QR Code Generator"
+    pageTitle: "QR Code Generator",
   },
   pt: {
-    brandKicker: "sugirodesign",
+    brandKicker: "sugiro.ai",
     lead: "Crie QR codes instantaneamente: sem cadastro, não expira, 100% gratuito.",
     formTitle: "Crie seu QR code",
     textLabel: "digite URL ou texto:",
@@ -51,7 +54,8 @@ const translations = {
     errorMedium: "Médio",
     errorHigh: "Alto",
     errorVeryHigh: "Muito Alto",
-    errorInfo: "Um nível de correção de erro mais alto torna o código QR mais confiável se ele ficar sujo, danificado ou parcialmente coberto, mas também torna o próprio código QR mais complexo, com mais quadrados.",
+    errorInfo:
+      "Um nível de correção de erro mais alto torna o código QR mais confiável se ele ficar sujo, danificado ou parcialmente coberto, mas também torna o próprio código QR mais complexo, com mais quadrados.",
     colorLabelDesktop: "cor do QR code (clique na barra abaixo):",
     colorLabelMobile: "cor do QR code (toque na barra abaixo):",
     generate: "Gerar QR Code",
@@ -59,18 +63,20 @@ const translations = {
     download: "Baixar QR Code",
     tipTitle: "Teste antes de compartilhar!",
     tipLabel: "IMPORTANTE",
-    tipBody: "É sempre bom testar o QR code antes de enviar para alguém, imprimir ou usar em qualquer outro lugar. Para isso basta escanear com a câmera do smartphone e abrir no navegador ou app correspondente para confirmar se o texto ou endereço (URL) que você digitou está correto.",
+    tipBody:
+      "É sempre bom testar o QR code antes de enviar para alguém, imprimir ou usar em qualquer outro lugar. Para isso basta escanear com a câmera do smartphone e abrir no navegador ou app correspondente para confirmar se o texto ou endereço (URL) que você digitou está correto.",
     featuresTitle: "Características",
     feature1: "Nunca expira",
     feature2: "Não precisa criar conta",
     feature3: "Personaliza tamanho e cor",
     feature4: "Ajuste de Correção de Erro",
     feature5: "Sem marca d'água",
-    footerBody: "Funciona inteiramente no seu navegador. Seus dados nunca saem do seu dispositivo.",
+    footerBody:
+      "Funciona inteiramente no seu navegador. Seus dados nunca saem do seu dispositivo.",
     footerCreditPrefix: "por lula rocha",
     emptyAlert: "Digite uma URL ou texto",
-    pageTitle: "Gerador de QR Code Grátis"
-  }
+    pageTitle: "Gerador de QR Code Grátis",
+  },
 };
 
 const form = document.querySelector("#qr-form");
@@ -148,7 +154,7 @@ function generateQR() {
     height: size,
     colorDark: color,
     colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel[errorCorrectionLevel]
+    correctLevel: QRCode.CorrectLevel[errorCorrectionLevel],
   });
 
   downloadButton.classList.remove("hidden");
@@ -207,7 +213,9 @@ if (backToTopButton) {
     const scrollableHeight =
       document.documentElement.scrollHeight - window.innerHeight;
     const threshold =
-      window.innerWidth <= 960 ? scrollableHeight * 0.5 : scrollableHeight * 0.25;
+      window.innerWidth <= 960
+        ? scrollableHeight * 0.5
+        : scrollableHeight * 0.25;
     const shouldShow = scrollableHeight > 0 && window.scrollY >= threshold;
 
     backToTopButton.classList.toggle("is-visible", shouldShow);
@@ -223,3 +231,52 @@ if (backToTopButton) {
 
 applyTranslations(currentLocale);
 generateQR();
+
+/* --------------------------------------------------------------------------
+   Theme Toggle
+   -------------------------------------------------------------------------- */
+const themeToggle = document.querySelector(".theme-toggle");
+
+function getTheme() {
+  const storage = getStorage();
+  const stored = storage ? storage.getItem("qr-theme") : null;
+  if (stored === "dark" || stored === "light") return stored;
+  return window.matchMedia("(prefers-color-scheme: light)").matches
+    ? "light"
+    : "dark";
+}
+
+function applyTheme(theme) {
+  if (theme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+  }
+}
+
+function setTheme(theme) {
+  applyTheme(theme);
+  const storage = getStorage();
+  if (storage) {
+    storage.setItem("qr-theme", theme);
+  }
+}
+
+if (themeToggle) {
+  applyTheme(getTheme());
+
+  themeToggle.addEventListener("click", () => {
+    const current = getTheme();
+    setTheme(current === "dark" ? "light" : "dark");
+  });
+
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => {
+      const storage = getStorage();
+      const stored = storage ? storage.getItem("qr-theme") : null;
+      if (!stored) {
+        applyTheme(e.matches ? "dark" : "light");
+      }
+    });
+}
