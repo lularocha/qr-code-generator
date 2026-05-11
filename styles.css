@@ -1,7 +1,7 @@
 :root {
     --bg: #f4f4f4;
     --panel: #ffffff;
-    --panel-strong: #ffffff;
+    --panel-strong: #efefef;
     --text: #1f1f1f;
     --muted: #666666;
     --accent: #f90;
@@ -16,8 +16,8 @@
 
 [data-theme="dark"] {
     --bg: #111111;
-    --panel: #222222;
-    --panel-strong: #1a1a1a;
+    --panel: #2a2a2a;
+    --panel-strong: #222222;
     --text: #e0e0e0;
     --muted: #999999;
     --accent: #f90;
@@ -385,7 +385,7 @@ input,
 select {
     width: 100%;
     padding: 0.9rem 1rem;
-    border: 1px solid var(--border);
+    border: 0;
     border-radius: 0.5rem;
     background: var(--panel-strong);
     color: var(--text);
@@ -410,6 +410,11 @@ input[type="color"] {
     min-height: 54px;
     padding: 0.35rem;
     cursor: pointer;
+    background: #ccc;
+}
+
+[data-theme="dark"] input[type="color"] {
+    background: #353535;
 }
 
 input[type="color"]::-webkit-color-swatch-wrapper {
