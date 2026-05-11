@@ -33,7 +33,7 @@ const translations = {
     feature4: "Adjust error correction",
     feature5: "No watermark",
     footerBody:
-      "Works entirely in your browser. Your data never leaves your device.",
+      '<span class="nobreak">Works entirely in your browser.</span> <span class="nobreak">Your data never leaves your device.</span>',
     footerCreditPrefix: "by lula rocha",
     emptyAlert: "Please enter a URL or text",
     pageTitle: "QR Code Generator",
@@ -72,7 +72,7 @@ const translations = {
     feature4: "Ajuste de Correção de Erro",
     feature5: "Sem marca d'água",
     footerBody:
-      "Funciona inteiramente no seu navegador. Seus dados nunca saem do seu dispositivo.",
+      '<span class="nobreak">Funciona inteiramente no seu navegador.</span> <span class="nobreak">Seus dados nunca saem do seu dispositivo.</span>',
     footerCreditPrefix: "por lula rocha",
     emptyAlert: "Digite uma URL ou texto",
     pageTitle: "Gerador de QR Code Grátis",

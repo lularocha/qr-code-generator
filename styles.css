@@ -579,11 +579,20 @@ input[type="color"]::-webkit-color-swatch {
     line-height: 1.55;
 }
 
+.nobreak {
+    white-space: nowrap;
+}
+
 .footer-credit {
-    margin-top: 0.5rem !important;
+    margin-top: 1.5rem !important;
 }
 
 .footer-credit a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.footer-credit a:hover {
     text-decoration: underline;
     text-underline-offset: 0.14em;
 }
