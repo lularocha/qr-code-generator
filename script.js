@@ -36,6 +36,7 @@ const translations = {
       '<span class="nobreak">Works entirely in your browser.</span> <span class="nobreak">Your data never leaves your device.</span>',
     footerCreditPrefix: "by lula rocha",
     emptyAlert: "Please enter a URL or text",
+    transparentBg: "Transparent background",
     pageTitle: "QR Code Generator",
   },
   pt: {
@@ -75,6 +76,7 @@ const translations = {
       '<span class="nobreak">Funciona inteiramente no seu navegador.</span> <span class="nobreak">Seus dados nunca saem do seu dispositivo.</span>',
     footerCreditPrefix: "por lula rocha",
     emptyAlert: "Digite uma URL ou texto",
+    transparentBg: "Fundo transparente",
     pageTitle: "Gerador de QR Code Grátis",
   },
 };
@@ -88,6 +90,7 @@ const qrCodeElement = document.querySelector("#qrcode");
 const downloadButton = document.querySelector("#download-btn");
 const localeButtons = document.querySelectorAll("[data-lang]");
 const colorLabel = document.querySelector("#color-label");
+const transparentBgCheckbox = document.querySelector("#transparent-bg");
 const backToTopButton = document.querySelector(".back-to-top");
 
 let currentLocale = getInitialLocale();
@@ -140,6 +143,7 @@ function generateQR() {
   const size = Number.parseInt(sizeInput.value, 10);
   const color = colorInput.value;
   const errorCorrectionLevel = errorCorrectionInput.value;
+  const transparent = transparentBgCheckbox && transparentBgCheckbox.checked;
 
   if (!text) {
     window.alert(translations[currentLocale].emptyAlert);
@@ -148,16 +152,58 @@ function generateQR() {
 
   qrCodeElement.innerHTML = "";
 
+  var origGetContext = HTMLCanvasElement.prototype.getContext;
+  if (transparent) {
+    HTMLCanvasElement.prototype.getContext = function () {
+      var ctx = origGetContext.apply(this, arguments);
+      if (arguments[0] === "2d") {
+        ctx.imageSmoothingEnabled = false;
+      }
+      return ctx;
+    };
+  }
+
   new QRCode(qrCodeElement, {
     text,
     width: size,
     height: size,
     colorDark: color,
-    colorLight: "#ffffff",
+    colorLight: transparent ? "#ffffff" : "#ffffff",
     correctLevel: QRCode.CorrectLevel[errorCorrectionLevel],
   });
 
+  if (transparent) {
+    HTMLCanvasElement.prototype.getContext = origGetContext;
+  }
+
   downloadButton.classList.remove("hidden");
+
+  if (transparent) {
+    var attempts = 0;
+    var process = function () {
+      var canvas = qrCodeElement.querySelector("canvas");
+      var qrImg = qrCodeElement.querySelector("img, canvas");
+      if (canvas && canvas.width > 0 && canvas.height > 0) {
+        if (qrImg) {
+          qrImg.style.background = "";
+          qrImg.style.padding = "0";
+        }
+        var ctx = canvas.getContext("2d", { willReadFrequently: true });
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imageData.data;
+        for (var i = 0; i < data.length; i += 4) {
+          if (data[i] === 255 && data[i + 1] === 255 && data[i + 2] === 255) {
+            data[i + 3] = 0;
+          }
+        }
+        ctx.putImageData(imageData, 0, 0);
+      } else if (attempts < 30) {
+        attempts++;
+        requestAnimationFrame(process);
+      }
+    };
+    requestAnimationFrame(process);
+  }
 }
 
 function downloadQR() {
@@ -182,6 +228,20 @@ function setLocale(locale) {
   }
   applyTranslations(locale);
 }
+
+colorInput.addEventListener("input", () => {
+  generateQR();
+});
+
+const previewCard = document.querySelector(".preview-card");
+
+transparentBgCheckbox.addEventListener("change", () => {
+  previewCard.classList.toggle(
+    "transparent-mode",
+    transparentBgCheckbox.checked,
+  );
+  generateQR();
+});
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -241,9 +301,9 @@ function getTheme() {
   const storage = getStorage();
   const stored = storage ? storage.getItem("qr-theme") : null;
   if (stored === "dark" || stored === "light") return stored;
-  return window.matchMedia("(prefers-color-scheme: light)").matches
-    ? "light"
-    : "dark";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
 }
 
 function applyTheme(theme) {
