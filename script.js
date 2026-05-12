@@ -172,7 +172,6 @@ function generateQR() {
     var canvas = qrCodeElement.querySelector("canvas");
     if (canvas) {
       canvas.style.background = "";
-      canvas.style.padding = "0";
     }
   }
 }
