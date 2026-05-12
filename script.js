@@ -25,7 +25,7 @@ const translations = {
     tipTitle: "Test before sharing !",
     tipLabel: "IMPORTANT",
     tipBody:
-      "Always test before sharing. Point your smartphone camera at the code, then open the link to confirm the text or URL is correct.",
+      "Point your smartphone camera at the code, then open the link to confirm the text or URL is correct.",
     featuresTitle: "Features",
     feature1: "Never expires",
     feature2: "No account required",
@@ -64,7 +64,7 @@ const translations = {
     tipTitle: "Teste antes de compartilhar !",
     tipLabel: "IMPORTANTE",
     tipBody:
-      "Sempre teste antes de compartilhar. Aponte a câmera do smartphone para o código e abra o link para confirmar se o texto ou URL está correto.",
+      "Aponte a câmera do smartphone para o código e abra o link para confirmar se o texto ou URL está correto.",
     featuresTitle: "Características",
     feature1: "Nunca expira",
     feature2: "Não precisa criar conta",

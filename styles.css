@@ -16,7 +16,7 @@
 
 [data-theme="dark"] {
     --bg: #111111;
-    --panel: #2a2a2a;
+    --panel: #282828;
     --panel-strong: #1a1a1a;
     --text: #fff;
     --muted: #999999;
@@ -39,7 +39,7 @@ body {
     font-family: var(--sans);
     color: var(--text);
     background: var(--bg);
-    border-top: 6px solid var(--accent);
+    border-top: 10px solid var(--accent);
 }
 
 .theme-toggle {
@@ -258,7 +258,7 @@ h2 {
 }
 
 h3 {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     font-weight: 300;
 }
 
@@ -440,6 +440,7 @@ input[type="color"]::-webkit-color-swatch {
     justify-content: center;
     border: 0;
     border-radius: 999px;
+    margin-bottom: 1rem;
     padding: 10px 30px;
     font-size: 1rem;
     font-weight: 700;
@@ -504,7 +505,7 @@ input[type="color"]::-webkit-color-swatch {
     align-items: center;
     justify-content: center;
     min-height: 420px;
-    padding: 1.25rem;
+    padding: 0 1.25rem 2rem;
     border-radius: var(--radius);
     background: var(--panel);
 }
@@ -529,11 +530,6 @@ input[type="color"]::-webkit-color-swatch {
     display: block;
     max-width: 100%;
     height: auto;
-}
-
-.preview-card .button {
-    align-self: center;
-    margin-top: 1rem;
 }
 
 .info-grid {
@@ -624,7 +620,7 @@ input[type="color"]::-webkit-color-swatch {
 
 @media (max-width: 960px) {
     .site-title {
-        font-size: 1.35rem;
+        font-size: 1.5rem;
     }
 
     .locale-switcher {
