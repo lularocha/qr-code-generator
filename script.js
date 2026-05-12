@@ -30,8 +30,9 @@ const translations = {
     feature1: "Never expires",
     feature2: "No account required",
     feature3: "Customize size and color",
-    feature4: "Adjust error correction",
-    feature5: "No watermark",
+    feature4: "Transparent background",
+    feature5: "Adjust error correction",
+    feature6: "No watermark",
     footerBody:
       '<span class="nobreak">Works entirely in your browser.</span> <span class="nobreak">Your data never leaves your device.</span>',
     footerCreditPrefix: "by lula rocha",
@@ -70,8 +71,9 @@ const translations = {
     feature1: "Nunca expira",
     feature2: "Não precisa criar conta",
     feature3: "Personaliza tamanho e cor",
-    feature4: "Ajuste de Correção de Erro",
-    feature5: "Sem marca d'água",
+    feature4: "Fundo transparente",
+    feature5: "Ajuste de Correção de Erro",
+    feature6: "Sem marca d'água",
     footerBody:
       '<span class="nobreak">Funciona inteiramente no seu navegador.</span> <span class="nobreak">Seus dados nunca saem do seu dispositivo.</span>',
     footerCreditPrefix: "por lula rocha",
@@ -228,6 +230,12 @@ function setLocale(locale) {
   }
   applyTranslations(locale);
 }
+
+colorInput.addEventListener("focus", () => {
+  if (window.innerWidth <= 960) {
+    document.querySelector("#qrcolor").scrollIntoView({ behavior: "smooth" });
+  }
+});
 
 colorInput.addEventListener("input", () => {
   generateQR();

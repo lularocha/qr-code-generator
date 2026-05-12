@@ -60,7 +60,7 @@ body {
 }
 
 .theme-toggle:hover {
-    background: var(--accent);
+    background: #000;
     color: #fff;
 }
 
@@ -75,8 +75,8 @@ body {
 }
 
 [data-theme="dark"] .theme-toggle:hover {
-    background: var(--accent);
-    color: #fff;
+    background: #fff;
+    color: #000;
 }
 
 .back-to-top {
@@ -199,17 +199,17 @@ a {
 }
 
 .locale-link.active {
-    background: #000;
+    background: var(--accent);
     color: #fff;
 }
 
 .locale-link:hover {
-    background: var(--accent);
+    background: #000;
     color: #fff;
 }
 
 .locale-link.active:hover {
-    background: var(--accent);
+    background: #000;
     color: #fff;
 }
 
@@ -219,14 +219,14 @@ a {
 }
 
 [data-theme="dark"] .locale-link.active {
-    background: #fff;
-    color: #000;
+    background: var(--accent);
+    color: #fff;
 }
 
 [data-theme="dark"] .locale-link:hover,
 [data-theme="dark"] .locale-link.active:hover {
-    background: var(--accent);
-    color: #fff;
+    background: #fff;
+    color: #000;
 }
 
 .hero {
@@ -271,7 +271,7 @@ h3 {
 
 .lead {
     margin: 1.5rem 0 0;
-    color: var(--text);
+    color: var(--muted);
     font-size: 1.15rem;
     line-height: 1.25;
 }
@@ -621,6 +621,12 @@ input[type="color"]::-webkit-color-swatch {
     font-size: 1.15rem;
 }
 
+@media (min-width: 960px) {
+    .tipBody {
+        width: 80%;
+    }
+}
+
 .feature-list {
     margin: 0.2rem 0 0;
     padding-left: 1.1rem;
@@ -673,6 +679,46 @@ input[type="color"]::-webkit-color-swatch {
 
 [data-theme="dark"] .back-to-top:hover {
     background: #f50;
+}
+
+@media (max-width: 768px) {
+    .locale-link:hover {
+        background: #ddd;
+        color: #000;
+    }
+
+    .locale-link.active:hover {
+        background: var(--accent);
+        color: #fff;
+    }
+
+    .theme-toggle:hover {
+        background: #ddd;
+        color: #000;
+    }
+
+    [data-theme="dark"] .locale-link:hover {
+        background: #555;
+        color: #fff;
+    }
+
+    [data-theme="dark"] .locale-link.active:hover {
+        background: var(--accent);
+        color: #fff;
+    }
+
+    [data-theme="dark"] .theme-toggle:hover {
+        background: #555;
+        color: #fff;
+    }
+
+    .back-to-top:hover {
+        background: var(--accent);
+    }
+
+    [data-theme="dark"] .back-to-top:hover {
+        background: var(--accent);
+    }
 }
 
 @media (max-width: 960px) {
