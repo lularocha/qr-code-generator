@@ -96,6 +96,7 @@ const transparentBgCheckbox = document.querySelector("#transparent-bg");
 const backToTopButton = document.querySelector(".back-to-top");
 
 let currentLocale = getInitialLocale();
+var qrGeneration = 0;
 
 function getStorage() {
   try {
@@ -181,8 +182,10 @@ function generateQR() {
   downloadButton.classList.remove("hidden");
 
   if (transparent) {
+    var gen = ++qrGeneration;
     var attempts = 0;
     var process = function () {
+      if (gen !== qrGeneration) return;
       var canvas = qrCodeElement.querySelector("canvas");
       var qrImg = qrCodeElement.querySelector("img, canvas");
       if (canvas && canvas.width > 0 && canvas.height > 0) {
@@ -321,9 +324,7 @@ function getTheme() {
   const storage = getStorage();
   const stored = storage ? storage.getItem("qr-theme") : null;
   if (stored === "dark" || stored === "light") return stored;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
+  return "light";
 }
 
 function applyTheme(theme) {
@@ -349,14 +350,4 @@ if (themeToggle) {
     const current = getTheme();
     setTheme(current === "dark" ? "light" : "dark");
   });
-
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (e) => {
-      const storage = getStorage();
-      const stored = storage ? storage.getItem("qr-theme") : null;
-      if (!stored) {
-        applyTheme(e.matches ? "dark" : "light");
-      }
-    });
 }
