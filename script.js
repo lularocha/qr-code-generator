@@ -1,7 +1,7 @@
 const translations = {
   en: {
     brandKicker: "sugiro.ai",
-    lead: "Create QR codes instantly.<br>No signup, No expiration, 100% free.",
+    lead: "Create QR codes instantly.<br>No signup, no expiration, 100% free.",
     formTitle: "Build your QR code",
     textLabel: "Enter URL or text",
     textPlaceholder: "https://example.com",
