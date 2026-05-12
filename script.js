@@ -186,16 +186,28 @@ function generateQR() {
       var canvas = qrCodeElement.querySelector("canvas");
       var qrImg = qrCodeElement.querySelector("img, canvas");
       if (canvas && canvas.width > 0 && canvas.height > 0) {
+        var ctx = canvas.getContext("2d", { willReadFrequently: true });
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imageData.data;
+        var hasNonWhite = false;
+        for (var i = 0; i < data.length; i += 4) {
+          if (data[i] !== 255 || data[i + 1] !== 255 || data[i + 2] !== 255) {
+            hasNonWhite = true;
+            break;
+          }
+        }
+        if (!hasNonWhite && attempts < 30) {
+          attempts++;
+          requestAnimationFrame(process);
+          return;
+        }
         if (qrImg) {
           qrImg.style.background = "";
           qrImg.style.padding = "0";
         }
-        var ctx = canvas.getContext("2d", { willReadFrequently: true });
-        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        var data = imageData.data;
-        for (var i = 0; i < data.length; i += 4) {
-          if (data[i] === 255 && data[i + 1] === 255 && data[i + 2] === 255) {
-            data[i + 3] = 0;
+        for (var j = 0; j < data.length; j += 4) {
+          if (data[j] === 255 && data[j + 1] === 255 && data[j + 2] === 255) {
+            data[j + 3] = 0;
           }
         }
         ctx.putImageData(imageData, 0, 0);
