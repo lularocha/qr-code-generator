@@ -188,6 +188,13 @@ function generateQR() {
       if (gen !== qrGeneration) return;
       var canvas = qrCodeElement.querySelector("canvas");
       var img = qrCodeElement.querySelector("img");
+
+      if (img && !img.complete && attempts < 30) {
+        attempts++;
+        requestAnimationFrame(process);
+        return;
+      }
+
       var target = canvas || img;
       if (target && target.width > 0 && target.height > 0) {
         if (!canvas) {
