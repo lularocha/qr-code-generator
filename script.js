@@ -96,7 +96,6 @@ const transparentBgCheckbox = document.querySelector("#transparent-bg");
 const backToTopButton = document.querySelector(".back-to-top");
 
 let currentLocale = getInitialLocale();
-var qrGeneration = 0;
 
 function getStorage() {
   try {
@@ -155,87 +154,26 @@ function generateQR() {
 
   qrCodeElement.innerHTML = "";
 
-  var origGetContext = HTMLCanvasElement.prototype.getContext;
-  if (transparent) {
-    HTMLCanvasElement.prototype.getContext = function () {
-      var ctx = origGetContext.apply(this, arguments);
-      if (arguments[0] === "2d") {
-        ctx.imageSmoothingEnabled = false;
-      }
-      return ctx;
-    };
-  }
-
-  new QRCode(qrCodeElement, {
-    text,
-    width: size,
-    height: size,
-    colorDark: color,
-    colorLight: transparent ? "#ffffff" : "#ffffff",
-    correctLevel: QRCode.CorrectLevel[errorCorrectionLevel],
-  });
-
-  if (transparent) {
-    HTMLCanvasElement.prototype.getContext = origGetContext;
-  }
+  QrCreator.render(
+    {
+      text,
+      radius: 0,
+      ecLevel: errorCorrectionLevel,
+      fill: color,
+      background: transparent ? null : "#ffffff",
+      size: size,
+    },
+    qrCodeElement,
+  );
 
   downloadButton.classList.remove("hidden");
 
   if (transparent) {
-    var gen = ++qrGeneration;
-    var attempts = 0;
-    var process = function () {
-      if (gen !== qrGeneration) return;
-      var canvas = qrCodeElement.querySelector("canvas");
-      var img = qrCodeElement.querySelector("img");
-
-      if (img && !img.complete && attempts < 30) {
-        attempts++;
-        requestAnimationFrame(process);
-        return;
-      }
-
-      var target = canvas || img;
-      if (target && target.width > 0 && target.height > 0) {
-        if (!canvas) {
-          canvas = document.createElement("canvas");
-          canvas.width = target.width;
-          canvas.height = target.height;
-          var tempCtx = canvas.getContext("2d");
-          tempCtx.drawImage(target, 0, 0);
-        }
-        var ctx = canvas.getContext("2d", { willReadFrequently: true });
-        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        var data = imageData.data;
-        var hasNonWhite = false;
-        for (var i = 0; i < data.length; i += 4) {
-          if (data[i] !== 255 || data[i + 1] !== 255 || data[i + 2] !== 255) {
-            hasNonWhite = true;
-            break;
-          }
-        }
-        if (!hasNonWhite && attempts < 30) {
-          attempts++;
-          requestAnimationFrame(process);
-          return;
-        }
-        target.style.background = "";
-        target.style.padding = "0";
-        for (var j = 0; j < data.length; j += 4) {
-          if (data[j] === 255 && data[j + 1] === 255 && data[j + 2] === 255) {
-            data[j + 3] = 0;
-          }
-        }
-        ctx.putImageData(imageData, 0, 0);
-        if (img && !qrCodeElement.querySelector("canvas")) {
-          img.replaceWith(canvas);
-        }
-      } else if (attempts < 30) {
-        attempts++;
-        requestAnimationFrame(process);
-      }
-    };
-    requestAnimationFrame(process);
+    var canvas = qrCodeElement.querySelector("canvas");
+    if (canvas) {
+      canvas.style.background = "";
+      canvas.style.padding = "0";
+    }
   }
 }
 
