@@ -187,8 +187,16 @@ function generateQR() {
     var process = function () {
       if (gen !== qrGeneration) return;
       var canvas = qrCodeElement.querySelector("canvas");
-      var qrImg = qrCodeElement.querySelector("img, canvas");
-      if (canvas && canvas.width > 0 && canvas.height > 0) {
+      var img = qrCodeElement.querySelector("img");
+      var target = canvas || img;
+      if (target && target.width > 0 && target.height > 0) {
+        if (!canvas) {
+          canvas = document.createElement("canvas");
+          canvas.width = target.width;
+          canvas.height = target.height;
+          var tempCtx = canvas.getContext("2d");
+          tempCtx.drawImage(target, 0, 0);
+        }
         var ctx = canvas.getContext("2d", { willReadFrequently: true });
         var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         var data = imageData.data;
@@ -204,16 +212,17 @@ function generateQR() {
           requestAnimationFrame(process);
           return;
         }
-        if (qrImg) {
-          qrImg.style.background = "";
-          qrImg.style.padding = "0";
-        }
+        target.style.background = "";
+        target.style.padding = "0";
         for (var j = 0; j < data.length; j += 4) {
           if (data[j] === 255 && data[j + 1] === 255 && data[j + 2] === 255) {
             data[j + 3] = 0;
           }
         }
         ctx.putImageData(imageData, 0, 0);
+        if (img && !qrCodeElement.querySelector("canvas")) {
+          img.replaceWith(canvas);
+        }
       } else if (attempts < 30) {
         attempts++;
         requestAnimationFrame(process);
