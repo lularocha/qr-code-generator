@@ -35,7 +35,7 @@ const translations = {
     feature6: "No watermark",
     footerBody:
       '<span class="nobreak">Works entirely in your browser.</span> <span class="nobreak">Your data never leaves your device.</span>',
-    footerCreditPrefix: "by lula rocha",
+    footerCreditPrefix: 'developed by Lula Rocha / <a href="https://sugiro.ai" target="_blank" rel="noopener noreferrer">sugiro.ai</a>',
     emptyAlert: "Please enter a URL or text",
     transparentBg: "Transparent background",
     pageTitle: "QR Code Generator",
@@ -76,7 +76,7 @@ const translations = {
     feature6: "Sem marca d'água",
     footerBody:
       '<span class="nobreak">Funciona inteiramente no seu navegador.</span> <span class="nobreak">Seus dados nunca saem do seu dispositivo.</span>',
-    footerCreditPrefix: "por lula rocha",
+    footerCreditPrefix: 'desenvolvido por Lula Rocha / <a href="https://sugiro.ai" target="_blank" rel="noopener noreferrer">sugiro.ai</a>',
     emptyAlert: "Digite uma URL ou texto",
     transparentBg: "Fundo transparente",
     pageTitle: "Gerador de QR Code Grátis",
