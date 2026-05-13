@@ -40,6 +40,7 @@ body {
     color: var(--text);
     background: var(--bg);
     border-top: 10px solid var(--accent);
+    overflow-x: hidden;
 }
 
 .theme-toggle {
@@ -634,7 +635,7 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 .footer {
-    margin: 2rem 0 3rem;
+    margin: 2rem 0;
     text-align: center;
 }
 
