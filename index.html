@@ -1,255 +1,310 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QR Code Generator</title>
-    <link rel="icon" type="image/png" href="./favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="wrap site-nav">
-        <div class="site-brand">
-          <div class="site-kicker" data-i18n="brandKicker">sugiro.ai</div>
-          <h1 class="site-title">
-            <a href="./">QR Code</a>
-          </h1>
-        </div>
-        <div class="locale-switcher" aria-label="Language and theme switcher">
-          <button
-            class="locale-link active"
-            type="button"
-            data-lang="en"
-            aria-pressed="true"
-          >
-            EN
-          </button>
-          <button
-            class="locale-link"
-            type="button"
-            data-lang="pt"
-            aria-pressed="false"
-          >
-            PT
-          </button>
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-label="Toggle dark mode"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="5"></circle>
-              <path d="M12 1v2"></path>
-              <path d="M12 21v2"></path>
-              <path d="M4.22 4.22l1.42 1.42"></path>
-              <path d="M18.36 18.36l1.42 1.42"></path>
-              <path d="M1 12h2"></path>
-              <path d="M21 12h2"></path>
-              <path d="M4.22 19.78l1.42-1.42"></path>
-              <path d="M18.36 5.64l1.42-1.42"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <main class="wrap">
-      <section class="hero">
-        <p class="lead" data-i18n="lead">
-          Create QR codes instantly.<br />No signup, no expiration, 100% free.
-        </p>
-      </section>
-
-      <section class="app-shell">
-        <div class="card form-card">
-          <div class="section-head">
-            <div>
-              <h2 data-i18n="formTitle">Build your QR code</h2>
-            </div>
-          </div>
-
-          <form id="qr-form" class="qr-form">
-            <div class="input-group">
-              <label for="text-input" data-i18n="textLabel"
-                >Enter URL or text</label
-              >
-              <input type="text" id="text-input" value="https://example.com" />
-            </div>
-
-            <div class="input-group">
-              <label for="size" data-i18n="sizeLabel">QR code size</label>
-              <select id="size">
-                <option value="128" data-i18n="sizeSmall">
-                  Small (128×128 px)
-                </option>
-                <option value="256" data-i18n="sizeMedium">
-                  Medium (256×256 px)
-                </option>
-                <option value="512" selected data-i18n="sizeLarge">
-                  Large (512×512 px)
-                </option>
-                <option value="1024" data-i18n="sizeXL">
-                  Extra Large (1024×1024 px)
-                </option>
-              </select>
-            </div>
-
-            <div class="input-group">
-              <div class="label-row">
-                <label for="error-correction" data-i18n="errorLabel"
-                  >Error correction level</label
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>QR Code Generator</title>
+        <link rel="icon" type="image/png" href="./favicon.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="wrap site-nav">
+                <div class="site-brand">
+                    <div class="site-kicker" data-i18n="brandKicker">
+                        sugiro.ai
+                    </div>
+                    <h1 class="site-title">
+                        <a href="./">QR Code</a>
+                    </h1>
+                </div>
+                <div
+                    class="locale-switcher"
+                    aria-label="Language and theme switcher"
                 >
-                <details class="info-popover">
-                  <summary
-                    class="info-trigger"
-                    aria-label="More information about error correction"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                      focusable="false"
+                    <button
+                        class="locale-link active"
+                        type="button"
+                        data-lang="en"
+                        aria-pressed="true"
                     >
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M12 16v-4"></path>
-                      <path d="M12 8h.01"></path>
-                    </svg>
-                  </summary>
-                  <div class="info-panel" data-i18n="errorInfo">
-                    A higher error correction level makes the QR code more
-                    reliable if it gets dirty, damaged, or partially covered,
-                    but it also makes the code more complex with more modules.
-                  </div>
-                </details>
-              </div>
-              <select id="error-correction">
-                <option value="L" data-i18n="errorLow">Low</option>
-                <option value="M" selected data-i18n="errorMedium">
-                  Medium
-                </option>
-                <option value="Q" data-i18n="errorHigh">High</option>
-                <option value="H" data-i18n="errorVeryHigh">Very High</option>
-              </select>
+                        EN
+                    </button>
+                    <button
+                        class="locale-link"
+                        type="button"
+                        data-lang="pt"
+                        aria-pressed="false"
+                    >
+                        PT
+                    </button>
+                    <button
+                        class="theme-toggle"
+                        type="button"
+                        aria-label="Toggle dark mode"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <path d="M12 1v2"></path>
+                            <path d="M12 21v2"></path>
+                            <path d="M4.22 4.22l1.42 1.42"></path>
+                            <path d="M18.36 18.36l1.42 1.42"></path>
+                            <path d="M1 12h2"></path>
+                            <path d="M21 12h2"></path>
+                            <path d="M4.22 19.78l1.42-1.42"></path>
+                            <path d="M18.36 5.64l1.42-1.42"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
+        </header>
 
-            <span id="qrcolor"></span>
-            <div class="input-group">
-              <label for="color" id="color-label" data-i18n="colorLabelDesktop"
-                >QR code color (click the bar below)</label
-              >
-              <input type="color" id="color" value="#000000" />
-            </div>
+        <main class="wrap">
+            <section class="hero">
+                <p class="lead" data-i18n="lead">
+                    Create QR codes instantly.
+                    <span class="nobreak">No signup, no expiration,
+                    100% free.</span>
+                </p>
+            </section>
 
-            <div class="input-group">
-              <label class="checkbox-label">
-                <input type="checkbox" id="transparent-bg" />
-                <span data-i18n="transparentBg">Transparent background</span>
-              </label>
-            </div>
+            <section class="app-shell">
+                <div class="card form-card">
+                    <div class="section-head">
+                        <div>
+                            <h2 data-i18n="formTitle">Build your QR code</h2>
+                        </div>
+                    </div>
 
-            <div class="form-actions">
-              <button
-                class="button primary"
-                id="generate-btn"
-                type="submit"
-                data-i18n="generate"
-              >
-                Generate QR Code
-              </button>
-            </div>
-          </form>
-        </div>
+                    <form id="qr-form" class="qr-form">
+                        <div class="input-group">
+                            <label for="text-input" data-i18n="textLabel"
+                                >Enter URL or text</label
+                            >
+                            <input
+                                type="text"
+                                id="text-input"
+                                value="https://example.com"
+                            />
+                        </div>
 
-        <div class="card preview-card">
-          <div class="section-head">
-            <div>
-              <h2 data-i18n="previewTitle">Preview and download</h2>
-            </div>
-          </div>
-          <div class="qr-stage">
-            <div id="qrcode" class="qrcode" aria-live="polite"></div>
-          </div>
-          <button
-            class="button secondary hidden"
-            id="download-btn"
-            type="button"
-            data-i18n="download"
-          >
-            Download QR Code
-          </button>
-        </div>
-      </section>
+                        <div class="input-group">
+                            <label for="size" data-i18n="sizeLabel"
+                                >QR code size</label
+                            >
+                            <select id="size">
+                                <option value="128" data-i18n="sizeSmall">
+                                    Small (128×128 px)
+                                </option>
+                                <option value="256" data-i18n="sizeMedium">
+                                    Medium (256×256 px)
+                                </option>
+                                <option
+                                    value="512"
+                                    selected
+                                    data-i18n="sizeLarge"
+                                >
+                                    Large (512×512 px)
+                                </option>
+                                <option value="1024" data-i18n="sizeXL">
+                                    Extra Large (1024×1024 px)
+                                </option>
+                            </select>
+                        </div>
 
-      <section class="info-grid">
-        <article class="card accent-card">
-          <div class="accent" data-i18n="tipLabel">IMPORTANT</div>
-          <h3 data-i18n="tipTitle">Test before sharing !</h3>
-          <p class="tipBody" data-i18n="tipBody">
-            Point your smartphone camera at the code, then open the link to
-            confirm the text or URL is correct.
-          </p>
-        </article>
+                        <div class="input-group">
+                            <div class="label-row">
+                                <label
+                                    for="error-correction"
+                                    data-i18n="errorLabel"
+                                    >Error correction level</label
+                                >
+                                <details class="info-popover">
+                                    <summary
+                                        class="info-trigger"
+                                        aria-label="More information about error correction"
+                                    >
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            aria-hidden="true"
+                                            focusable="false"
+                                        >
+                                            <circle
+                                                cx="12"
+                                                cy="12"
+                                                r="10"
+                                            ></circle>
+                                            <path d="M12 16v-4"></path>
+                                            <path d="M12 8h.01"></path>
+                                        </svg>
+                                    </summary>
+                                    <div
+                                        class="info-panel"
+                                        data-i18n="errorInfo"
+                                    >
+                                        A higher error correction level makes
+                                        the QR code more reliable if it gets
+                                        dirty, damaged, or partially covered,
+                                        but it also makes the code more complex
+                                        with more modules.
+                                    </div>
+                                </details>
+                            </div>
+                            <select id="error-correction">
+                                <option value="L" data-i18n="errorLow">
+                                    Low
+                                </option>
+                                <option
+                                    value="M"
+                                    selected
+                                    data-i18n="errorMedium"
+                                >
+                                    Medium
+                                </option>
+                                <option value="Q" data-i18n="errorHigh">
+                                    High
+                                </option>
+                                <option value="H" data-i18n="errorVeryHigh">
+                                    Very High
+                                </option>
+                            </select>
+                        </div>
 
-        <article class="card">
-          <div class="accent teal" data-i18n="featuresTitle">Features</div>
-          <ul class="feature-list">
-            <li data-i18n="feature1">Never expires</li>
-            <li data-i18n="feature2">No account required</li>
-            <li data-i18n="feature3">Customize size and color</li>
-            <li data-i18n="feature4">Transparent background</li>
-            <li data-i18n="feature5">Adjust error correction</li>
-            <li data-i18n="feature6">No watermark</li>
-          </ul>
-        </article>
-      </section>
+                        <span id="qrcolor"></span>
+                        <div class="input-group">
+                            <label
+                                for="color"
+                                id="color-label"
+                                data-i18n="colorLabelDesktop"
+                                >QR code color (click the bar below)</label
+                            >
+                            <input type="color" id="color" value="#000000" />
+                        </div>
 
-      <footer class="footer">
-        <p data-i18n="footerBody">
-          <span class="nobreak"> Works entirely in your browser. </span>
-          <span class="nobreak"> Your data never leaves your device. </span>
-        </p>
-        <p class="footer-credit">
-          <span data-i18n="footerCreditPrefix">by lula rocha</span>
-          <a
-            href="https://sugiro.ai/about-me"
-            target="_blank"
-            rel="noopener noreferrer"
-            >sugiro.ai/about-me</a
-          >
-        </p>
-      </footer>
-    </main>
+                        <div class="input-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="transparent-bg" />
+                                <span data-i18n="transparentBg"
+                                    >Transparent background</span
+                                >
+                            </label>
+                        </div>
 
-    <button class="back-to-top" type="button" aria-label="Back to top">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-      >
-        <path d="m5 12 7-7 7 7"></path>
-        <path d="M12 19V5"></path>
-      </svg>
-    </button>
-    <!-- <script src="./qrcode.min.js"></script> -->
-    <script src="./qr-creator.min.js"></script>
-    <script src="./script.js"></script>
-  </body>
+                        <div class="form-actions">
+                            <button
+                                class="button primary"
+                                id="generate-btn"
+                                type="submit"
+                                data-i18n="generate"
+                            >
+                                Generate QR Code
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card preview-card">
+                    <div class="section-head">
+                        <div>
+                            <h2 data-i18n="previewTitle">
+                                Preview and download
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="qr-stage">
+                        <div
+                            id="qrcode"
+                            class="qrcode"
+                            aria-live="polite"
+                        ></div>
+                    </div>
+                    <button
+                        class="button secondary hidden"
+                        id="download-btn"
+                        type="button"
+                        data-i18n="download"
+                    >
+                        Download QR Code
+                    </button>
+                </div>
+            </section>
+
+            <section class="info-grid">
+                <article class="card accent-card">
+                    <div class="accent" data-i18n="tipLabel">IMPORTANT</div>
+                    <h3 data-i18n="tipTitle">Test before sharing !</h3>
+                    <p class="tipBody" data-i18n="tipBody">
+                        Point your smartphone camera at the code, then open the
+                        link to confirm the text or URL is correct.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="accent teal" data-i18n="featuresTitle">
+                        Features
+                    </div>
+                    <ul class="feature-list">
+                        <li data-i18n="feature1">Never expires</li>
+                        <li data-i18n="feature2">No account required</li>
+                        <li data-i18n="feature3">Customize size and color</li>
+                        <li data-i18n="feature4">Transparent background</li>
+                        <li data-i18n="feature5">Adjust error correction</li>
+                        <li data-i18n="feature6">No watermark</li>
+                    </ul>
+                </article>
+            </section>
+
+            <footer class="footer">
+                <p data-i18n="footerBody">
+                    <span class="nobreak">
+                        Works entirely in your browser.
+                    </span>
+                    <span class="nobreak">
+                        Your data never leaves your device.
+                    </span>
+                </p>
+                <p class="footer-credit">
+                    <span data-i18n="footerCreditPrefix">by lula rocha</span>
+                    <a
+                        href="https://sugiro.ai/about-me"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >sugiro.ai/about-me</a
+                    >
+                </p>
+            </footer>
+        </main>
+
+        <button class="back-to-top" type="button" aria-label="Back to top">
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+                <path d="m5 12 7-7 7 7"></path>
+                <path d="M12 19V5"></path>
+            </svg>
+        </button>
+        <!-- <script src="./qrcode.min.js"></script> -->
+        <script src="./qr-creator.min.js"></script>
+        <script src="./script.js"></script>
+    </body>
 </html>
