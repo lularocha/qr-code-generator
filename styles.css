@@ -411,7 +411,7 @@ input[type="color"] {
     min-height: 54px;
     padding: 0.35rem;
     cursor: pointer;
-    background: #eee;
+    background: #ddd;
 }
 
 [data-theme="dark"] input[type="color"] {
