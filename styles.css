@@ -264,7 +264,6 @@ h3 {
 }
 
 .lead,
-.feature-list,
 .footer p,
 .accent-card p {
     color: var(--muted);
@@ -441,7 +440,7 @@ input[type="color"]::-webkit-color-swatch {
     justify-content: center;
     border: 0;
     border-radius: 999px;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     padding: 10px 30px;
     font-size: 1rem;
     font-weight: 700;
@@ -633,10 +632,18 @@ input[type="color"]::-webkit-color-swatch {
     font-family: "DM Mono", monospace;
 }
 
-.feature-list {
-    margin: 0.2rem 0 0;
-    padding-left: 1.1rem;
-    line-height: 1.75;
+.feature-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem 1.3rem;
+    align-items: baseline;
+    color: var(--muted);
+    font-size: 1.15rem;
+    margin: 1rem 0 0;
+}
+
+.feature-bullet {
+    font-family: "DM Mono", monospace;
 }
 
 .footer {
@@ -762,7 +769,7 @@ input[type="color"]::-webkit-color-swatch {
     }
 
     .card {
-        padding: 1.15rem;
+        padding: 1.75rem;
     }
 }
 
