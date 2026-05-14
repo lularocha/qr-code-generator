@@ -38,7 +38,7 @@ const translations = {
     footerCreditPrefix:
       'developed by Lula Rocha / <a href="https://sugiro.ai" target="_blank" rel="noopener noreferrer">sugiro.ai</a>',
     emptyAlert: "Please enter a URL or text",
-    transparentBg: "Transparent background (.png)",
+    transparentBg: "Transparent background",
     pageTitle: "QR Code Generator",
   },
   pt: {
@@ -80,7 +80,7 @@ const translations = {
     footerCreditPrefix:
       'desenvolvido por Lula Rocha / <a href="https://sugiro.ai" target="_blank" rel="noopener noreferrer">sugiro.ai</a>',
     emptyAlert: "Digite uma URL ou texto",
-    transparentBg: "Fundo transparente (.png)",
+    transparentBg: "Fundo transparente",
     pageTitle: "Gerador de QR Code Grátis",
   },
 };
