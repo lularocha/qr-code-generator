@@ -30,14 +30,15 @@ const translations = {
     feature1: "Never expires",
     feature2: "No account required",
     feature3: "Customize size and color",
-    feature4: "Transparent background",
+    feature4: "Transparent background (.png)",
     feature5: "Adjust error correction",
     feature6: "No watermark",
     footerBody:
       '<span class="nobreak">Works entirely in your browser.</span> <span class="nobreak">Your data never leaves your device.</span>',
-    footerCreditPrefix: 'developed by Lula Rocha / <a href="https://sugiro.ai" target="_blank" rel="noopener noreferrer">sugiro.ai</a>',
+    footerCreditPrefix:
+      'developed by Lula Rocha / <a href="https://sugiro.ai" target="_blank" rel="noopener noreferrer">sugiro.ai</a>',
     emptyAlert: "Please enter a URL or text",
-    transparentBg: "Transparent background",
+    transparentBg: "Transparent background (.png)",
     pageTitle: "QR Code Generator",
   },
   pt: {
@@ -71,14 +72,15 @@ const translations = {
     feature1: "Nunca expira",
     feature2: "Não precisa criar conta",
     feature3: "Personaliza tamanho e cor",
-    feature4: "Fundo transparente",
+    feature4: "Fundo transparente (.png)",
     feature5: "Ajuste de Correção de Erro",
     feature6: "Sem marca d'água",
     footerBody:
       '<span class="nobreak">Funciona inteiramente no seu navegador.</span> <span class="nobreak">Seus dados nunca saem do seu dispositivo.</span>',
-    footerCreditPrefix: 'desenvolvido por Lula Rocha / <a href="https://sugiro.ai" target="_blank" rel="noopener noreferrer">sugiro.ai</a>',
+    footerCreditPrefix:
+      'desenvolvido por Lula Rocha / <a href="https://sugiro.ai" target="_blank" rel="noopener noreferrer">sugiro.ai</a>',
     emptyAlert: "Digite uma URL ou texto",
-    transparentBg: "Fundo transparente",
+    transparentBg: "Fundo transparente (.png)",
     pageTitle: "Gerador de QR Code Grátis",
   },
 };

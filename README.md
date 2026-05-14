@@ -12,7 +12,7 @@ No signup, no expiration, no watermarks.
 - **Instant QR generation** from any URL or text
 - **Customizable size** — 128px to 1024px
 - **Custom colors** with live preview
-- **Transparent background** option with checkerboard preview
+- **Transparent background (.png)** option with checkerboard preview
 - **Error correction** levels (L, M, Q, H)
 - **Download** as PNG
 - **Dark / light theme** with system-aware toggle
