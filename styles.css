@@ -624,11 +624,12 @@ input[type="color"]::-webkit-color-swatch {
 
 .tipBody ol {
     margin: 0;
-    padding-left: 1.25rem;
+    padding-left: 1.75rem;
 }
 
 .tipBody li {
-    margin-bottom: 0.35rem;
+    margin-bottom: 1rem;
+    line-height: 1.25;
 }
 
 .feature-list {
