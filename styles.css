@@ -618,26 +618,18 @@ input[type="color"]::-webkit-color-swatch {
 
 .tipBody {
     margin: 1rem 0 0;
-    line-height: 1.7;
     font-size: 1.15rem;
 }
 
-.tipBody ol {
-    margin: 0;
-    padding-left: 0;
-    list-style: none;
-    counter-reset: tip-item;
+.tip-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem 0.6rem;
+    align-items: baseline;
+    color: var(--muted);
 }
 
-.tipBody ol li {
-    counter-increment: tip-item;
-    margin-bottom: 1rem;
-    line-height: 1.25;
-}
-
-.tipBody ol li::before {
-    content: counter(tip-item) ".";
-    margin-right: 0.5rem;
+.tip-num {
     font-family: "DM Mono", monospace;
 }
 
