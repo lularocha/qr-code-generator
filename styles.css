@@ -622,6 +622,15 @@ input[type="color"]::-webkit-color-swatch {
     font-size: 1.15rem;
 }
 
+.tipBody ol {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.tipBody li {
+    margin-bottom: 0.35rem;
+}
+
 .feature-list {
     margin: 0.2rem 0 0;
     padding-left: 1.1rem;

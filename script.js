@@ -25,7 +25,11 @@ const translations = {
     tipTitle: "Test before sharing !",
     tipLabel: "IMPORTANT",
     tipBody:
-      "Point your smartphone camera at the code, then open the link to confirm the text or URL is correct.",
+      "<ol>\
+            <li>Download the QR Code</li>\
+            <li>Point your smartphone camera at the code</li>\
+            <li>Open the link to confirm the text or URL is correct</li>\
+          </ol>",
     featuresTitle: "Features",
     feature1: "Never expires",
     feature2: "No account required",
@@ -67,7 +71,11 @@ const translations = {
     tipTitle: "Teste antes de compartilhar !",
     tipLabel: "IMPORTANTE",
     tipBody:
-      "Aponte a câmera do smartphone para o código e abra o link para confirmar se o texto ou URL está correto.",
+      "<ol>\
+            <li>Baixe o QR Code</li>\
+            <li>Aponte a câmera do smartphone para o código</li>\
+            <li>Abra o link para confirmar se o texto ou URL está correto</li>\
+          </ol>",
     featuresTitle: "Características",
     feature1: "Nunca expira",
     feature2: "Não precisa criar conta",
