@@ -264,8 +264,11 @@ h3 {
 }
 
 .lead,
-.footer p,
 .accent-card p {
+    color: var(--muted);
+}
+
+.footer p {
     color: var(--muted);
 }
 
@@ -663,6 +666,7 @@ input[type="color"]::-webkit-color-swatch {
 
 .footer-credit {
     margin-top: 1.5rem !important;
+    font-size: 14px;
 }
 
 .footer-credit a {
