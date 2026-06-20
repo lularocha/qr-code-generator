@@ -281,7 +281,7 @@ generateQR();
 /* --------------------------------------------------------------------------
    Theme Toggle
    -------------------------------------------------------------------------- */
-const themeToggle = document.querySelector(".theme-toggle");
+const themeButtons = document.querySelectorAll("[data-theme-set]");
 
 function getTheme() {
   const storage = getStorage();
@@ -296,6 +296,12 @@ function applyTheme(theme) {
   } else {
     document.documentElement.removeAttribute("data-theme");
   }
+
+  themeButtons.forEach((button) => {
+    const isActive = button.dataset.themeSet === theme;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
 }
 
 function setTheme(theme) {
@@ -306,11 +312,10 @@ function setTheme(theme) {
   }
 }
 
-if (themeToggle) {
-  applyTheme(getTheme());
+applyTheme(getTheme());
 
-  themeToggle.addEventListener("click", () => {
-    const current = getTheme();
-    setTheme(current === "dark" ? "light" : "dark");
+themeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setTheme(button.dataset.themeSet === "dark" ? "dark" : "light");
   });
-}
+});
