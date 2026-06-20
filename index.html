@@ -29,20 +29,23 @@
                     aria-label="Language and theme switcher"
                 >
                     <button
-                        class="locale-link active"
+                        class="locale-link theme-link"
                         type="button"
-                        data-lang="en"
-                        aria-pressed="true"
-                    >
-                        EN
-                    </button>
-                    <button
-                        class="locale-link"
-                        type="button"
-                        data-lang="pt"
+                        data-theme-set="dark"
+                        aria-label="Dark mode"
                         aria-pressed="false"
                     >
-                        BR
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                        </svg>
                     </button>
                     <button
                         class="locale-link theme-link active"
@@ -72,23 +75,20 @@
                         </svg>
                     </button>
                     <button
-                        class="locale-link theme-link"
+                        class="locale-link"
                         type="button"
-                        data-theme-set="dark"
-                        aria-label="Dark mode"
+                        data-lang="pt"
                         aria-pressed="false"
                     >
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            aria-hidden="true"
-                        >
-                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-                        </svg>
+                        BR
+                    </button>
+                    <button
+                        class="locale-link active"
+                        type="button"
+                        data-lang="en"
+                        aria-pressed="true"
+                    >
+                        EN
                     </button>
                 </div>
             </div>
