@@ -159,7 +159,7 @@ function generateQR() {
 
   if (!text) {
     window.alert(translations[currentLocale].emptyAlert);
-    return;
+    return false;
   }
 
   qrCodeElement.innerHTML = "";
@@ -184,6 +184,8 @@ function generateQR() {
       canvas.style.background = "";
     }
   }
+
+  return true;
 }
 
 function downloadQR() {
@@ -209,6 +211,14 @@ function setLocale(locale) {
   applyTranslations(locale);
 }
 
+const previewCard = document.querySelector(".preview-card");
+
+function scrollToPreviewOnMobile() {
+  if (window.innerWidth <= 960) {
+    previewCard.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
 colorInput.addEventListener("focus", () => {
   if (window.innerWidth <= 960) {
     document.querySelector("#qrcolor").scrollIntoView({ behavior: "smooth" });
@@ -218,8 +228,6 @@ colorInput.addEventListener("focus", () => {
 colorInput.addEventListener("input", () => {
   generateQR();
 });
-
-const previewCard = document.querySelector(".preview-card");
 
 transparentBgCheckbox.addEventListener("change", () => {
   previewCard.classList.toggle(
@@ -231,7 +239,9 @@ transparentBgCheckbox.addEventListener("change", () => {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  generateQR();
+  if (generateQR()) {
+    scrollToPreviewOnMobile();
+  }
 });
 
 downloadButton.addEventListener("click", downloadQR);
