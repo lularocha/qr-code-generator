@@ -118,7 +118,7 @@ function getStorage() {
 function getInitialLocale() {
   const storage = getStorage();
   const storedLocale = storage ? storage.getItem("qr-language") : null;
-  return storedLocale === "pt" ? "pt" : "en";
+  return storedLocale === "en" ? "en" : "pt";
 }
 
 function getColorLabelKey() {
