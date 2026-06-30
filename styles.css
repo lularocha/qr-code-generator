@@ -38,8 +38,15 @@ body {
     margin: 0;
     font-family: var(--sans);
     color: var(--text);
-    background: var(--bg);
-    border-top: 10px solid var(--accent);
+    /* Fill the iOS status-bar safe area with the same accent as the top
+       border, so in standalone/full-screen mode the orange runs seamlessly
+       up behind the iPhone status-bar icons. In a normal browser the inset
+       is 0, so this collapses to the original 10px accent border. */
+    padding-top: calc(env(safe-area-inset-top, 0px) + 10px);
+    background:
+        linear-gradient(var(--accent), var(--accent)) top / 100%
+            calc(env(safe-area-inset-top, 0px) + 10px) no-repeat,
+        var(--bg);
     overflow-x: hidden;
 }
 
@@ -688,7 +695,7 @@ input[type="color"]::-webkit-color-swatch {
         align-items: center;
         gap: 6px;
         position: absolute;
-        top: 30px;
+        top: calc(30px + env(safe-area-inset-top, 0px));
         right: 20px;
     }
 
